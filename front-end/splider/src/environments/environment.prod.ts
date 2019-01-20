@@ -3,7 +3,7 @@ export const environment = {
     production: true,
     apiURL: {
         login: `${pre_path}/web/user/login`,
-        logout: `${pre_path}/web/user/logout`,
+        logout: `${pre_path}/web/oauth/logout`,
         workResFul: `${pre_path}/web/work/`,
         proxyipResFul: `${pre_path}/web/proxyip/`,
         scheduleResFul: `${pre_path}/web/schedule/`,

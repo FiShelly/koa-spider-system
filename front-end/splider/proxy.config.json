@@ -1,0 +1,10 @@
+{
+    "/web": {
+        "target": "http://localhost:4900",
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/": ""
+        }
+    }
+}

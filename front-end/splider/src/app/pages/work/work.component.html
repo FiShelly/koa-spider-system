@@ -1,0 +1,164 @@
+<div class="page-container page-work">
+    <div class="panel-info">
+        <div class="cat-name">爬虫任务</div>
+        <ng-sm-button class="upload-btn"
+                      icon="&#xe682;"
+                      (btnClick)="handleAdd($event)">
+            新增任务
+        </ng-sm-button>
+        <ng-sm-button class="upload-btn more"
+                      theme="success"
+                      plain="true"
+                      icon="&#xe682;"
+                      (btnClick)="handleSaveAll($event)">
+            保存所有
+        </ng-sm-button>
+    </div>
+    <div class="work-panel">
+        <ng-sm-tabs [(ngModel)]="current.tab">
+            <ng-sm-tab-view *ngFor="let workItem of workList;index as i"
+                            [(label)]="workItem.name"
+                            [name]="workItem.id">
+                <div class="row input-name">
+                    <ng-sm-label class="title-label">任务名称：</ng-sm-label>
+                    <ng-sm-input [(ngModel)]="workItem.name"></ng-sm-input>
+                    <ng-sm-button class="op-btn"
+                                  theme="primary"
+                                  (btnClick)="handleStart($event,workItem, i)"
+                                  plain="true">
+                        开始执行
+                    </ng-sm-button>
+                    <ng-sm-button class="op-btn"
+                                  theme="danger"
+                                  plain="true"
+                                  (btnClick)="handleDelete($event,workItem, i)"
+                    >删除任务</ng-sm-button>
+                </div>
+                <div class="row input-url">
+                    <ng-sm-label class="title-label">url地址：</ng-sm-label>
+                    <ng-sm-input [(ngModel)]="workItem.url"></ng-sm-input>
+                </div>
+                <div class="row">
+                    <ng-sm-label class="title-label">结果返回类别：</ng-sm-label>
+                    <ng-sm-radio-group [(ngModel)]="workItem.resultType">
+                        <ng-sm-radio *ngFor="let item of resultType; index as i; "
+                                     [label]="item.label">
+                            {{item.text}}
+                        </ng-sm-radio>
+                    </ng-sm-radio-group>
+                </div>
+                <div class="row" *ngIf="workItem.resultType == 'relate'">
+                    <ng-sm-label class="title-label">内容相关：</ng-sm-label>
+                    <ng-sm-input [(ngModel)]="workItem.related"></ng-sm-input>
+                </div>
+                <div class="row" *ngIf="workItem.resultType === 'advance'">
+                    <ng-sm-label class="title-label"><h3>高级：</h3></ng-sm-label>
+                </div>
+                <div class="row" *ngIf="workItem.resultType === 'advance'">
+                    <div class="row" *ngFor="let item of workItem.advance; index as i">
+                        <ng-sm-label class="cancel-pdl">键名：</ng-sm-label>
+                        <ng-sm-input [(ngModel)]="item.key"></ng-sm-input>
+                        <ng-sm-label>选择器：</ng-sm-label>
+                        <ng-sm-input [(ngModel)]="item.selector"></ng-sm-input>
+                        <ng-sm-button class="op-btn"
+                                      theme="text"
+                                      *ngIf="i == (workItem.advance.length - 1)"
+                                      (btnClick)="handleAddBtn($event, workItem)">
+                            增加
+                        </ng-sm-button>
+                        <ng-sm-button class="op-btn"
+                                      theme="text"
+                                      (btnClick)="handleDeleteBtn($event,workItem,i)"
+                                      *ngIf="workItem.advance.length != 1">
+                            删除
+                        </ng-sm-button>
+                    </div>
+                </div>
+                <div class="row">
+                    <ng-sm-label class="title-label">是否定时：</ng-sm-label>
+                    <ng-sm-radio-group [(ngModel)]="workItem.isDelayed">
+                        <ng-sm-radio [label]="false">
+                            否
+                        </ng-sm-radio>
+                        <ng-sm-radio [label]="true">
+                            是
+                        </ng-sm-radio>
+                    </ng-sm-radio-group>
+                </div>
+                <div class="row" *ngIf="workItem.isDelayed">
+                    <ng-sm-label class="title-label">选择时间：</ng-sm-label>
+                    <ng-sm-select
+                        class="upload-btn"
+                        [(ngModel)]="workItem.delayedTime"
+                    >
+                        <ng-sm-select-option label="5sec">
+                            每5秒
+                        </ng-sm-select-option>
+                        <ng-sm-select-option label="5min">
+                            每5分钟
+                        </ng-sm-select-option>
+                        <ng-sm-select-option label="15min">
+                            每15分钟
+                        </ng-sm-select-option>
+                        <ng-sm-select-option label="halfhour">
+                            每半小时
+                        </ng-sm-select-option>
+                        <ng-sm-select-option label="hour">
+                            每小时
+                        </ng-sm-select-option>
+                        <ng-sm-select-option label="halfday">
+                            每半天
+                        </ng-sm-select-option>
+                        <ng-sm-select-option label="day">
+                            每天
+                        </ng-sm-select-option>
+                        <ng-sm-select-option label="week">
+                            每周
+                        </ng-sm-select-option>
+                    </ng-sm-select>
+                </div>
+                <div class="row">
+                    <ng-sm-label class="title-label">是否使用代理：</ng-sm-label>
+                    <ng-sm-radio-group [(ngModel)]="workItem.isUseProxy">
+                        <ng-sm-radio [label]="false">
+                            否
+                        </ng-sm-radio>
+                        <ng-sm-radio [label]="true">
+                            是
+                        </ng-sm-radio>
+                    </ng-sm-radio-group>
+                </div>
+                <div class="content" *ngIf="workItem.resultList || workItem.html">
+                    <div class="left-part">
+                        <ng-sm-label class="title-label"><h3>结果列表：</h3></ng-sm-label>
+                        <ngx-codemirror
+                            style="height: 600px;"
+                            [(ngModel)]="workItem.resultList"
+                            [options]="{
+                                lineNumbers: true,
+                                lineWrapping: 'wrap',
+                                theme: 'material',
+                                mode: 'application/json'
+                             }"
+                        ></ngx-codemirror>
+                    </div>
+                    <div class="right-part">
+                        <ng-sm-label class="title-label"><h3>html结果：</h3></ng-sm-label>
+                        <ngx-codemirror
+                            style="height: 600px;"
+                            [(ngModel)]="workItem.html"
+                            [options]="{
+                                lineNumbers: true,
+                                lineWrapping: 'wrap',
+                                theme: 'material',
+                                mode: 'text/html'
+                             }"
+                        ></ngx-codemirror>
+                    </div>
+                </div>
+            </ng-sm-tab-view>
+        </ng-sm-tabs>
+
+    </div>
+</div>
+

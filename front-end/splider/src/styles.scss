@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/iconfont";
+@import "assets/var";
+@import "~codemirror/lib/codemirror.css";
+@import "~codemirror/theme/material.css";
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    background-color: #f8f8f8;
+}
+
+body{
+    min-width: 1200px;
+}
+
+.page-container{
+    padding: 20px ;
+    .panel-info {
+        position: relative;
+        .upload-btn {
+            .el-button, .el-select {
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+        }
+        .upload-btn.more{
+            .el-button, .el-select {
+                position: absolute;
+                right: 120px;
+                top: 0px;
+            }
+        }
+        .cat-name {
+            font-size: 24px;
+            line-height: 40px;
+        }
+    }
+}
+
+.row{
+    display: block;
+    clear: both;
+    width: 100%;
+    position: relative;
+    height: auto;
+    overflow: hidden;
+    min-height: 1px;
+}
+
+.CodeMirror {
+    min-height: 600px;
+    height: auto;
+}

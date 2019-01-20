@@ -1,0 +1,19 @@
+<div class="page-container page-work">
+    <div class="panel-info">
+        <div class="cat-name">代理状态</div>
+        <ng-sm-button class="upload-btn"
+                      icon="&#xe682;"
+                      (btnClick)="handleGetList($event)">
+            刷新
+        </ng-sm-button>
+    </div>
+
+    <div class="list-container">
+        <ng-sm-table-shown-list
+            width="958"
+            [operations]="listOperations"
+            [format]="listFormat"
+            [dataList]="proxyList"
+        ></ng-sm-table-shown-list>
+    </div>
+</div>

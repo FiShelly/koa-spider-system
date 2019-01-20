@@ -1,0 +1,73 @@
+.page-work {
+    .work-panel {
+        margin-top: 20px;
+
+        .input-url {
+            ::ng-deep {
+                .el-input {
+                    width: 86%;
+                }
+            }
+        }
+
+        .input-name {
+            ::ng-deep {
+                .el-input {
+                    width: 38%;
+                }
+            }
+        }
+
+        .title-label {
+            ::ng-deep {
+                .el-label {
+                    width: 130px;
+                    padding-left: 0;
+                }
+            }
+        }
+
+        .cancel-pdl {
+            ::ng-deep {
+                .el-label {
+                    padding-left: 0;
+                }
+            }
+        }
+
+        .op-btn {
+            margin-left: 10px;
+        }
+    }
+
+    ::ng-deep {
+        .el-radio {
+            margin-right: 10px;
+        }
+    }
+
+    .row {
+        margin-bottom: 10px;
+    }
+
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: baseline;
+        min-height: 600px;
+
+        > * {
+            min-height: 600px;
+            height: auto;
+        }
+
+        .left-part {
+            width: 50%;
+        }
+
+        .right-part {
+            width: 50%;
+        }
+    }
+}

@@ -1,7 +1,7 @@
-# koa-blog-system
+# Koa-blog-system
  This is a web spider system which use koa.js, mysql, js, html, css, angular7 to code it.
 
-# the system directories
+# The system directories
 ```
 .
 ├── app
@@ -28,7 +28,7 @@
 └── test
 ```
 
-# how to use
+# How to use
 before you use, you should copy database.config.example.js,server.config.exmaple.js in config dir.
 ```sh
 $ cd confg
@@ -57,7 +57,7 @@ $ npm run build
 $ npm run start:prod
 ```
 
-# how to build
+# How to build
 
 ```sh
 $ cd front-end/spider

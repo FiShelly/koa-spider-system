@@ -17,4 +17,9 @@ router.get('/login', async function (ctx, next) {
     }
 });
 
+
+router.get('/logout', async function (ctx, next) {
+    ctx.body = await userController.logout(ctx);
+});
+
 export default router;

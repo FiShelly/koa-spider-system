@@ -1,5 +1,6 @@
 import { normalUtil } from '../utils';
 import rq from 'request-promise';
+
 const packData = normalUtil.packData;
 const validator = normalUtil.validator;
 const deepClone = normalUtil.deepClone;
@@ -36,6 +37,11 @@ const oauthLogin = async function (ctx) {
     }
 };
 
+const logout = async function (ctx) {
+    ctx.session.user = null;
+    return packData(200, 'success', {});
+};
+
 export default {
-    oauthLogin, userInfo
+    oauthLogin, userInfo, logout
 };

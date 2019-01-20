@@ -1,7 +1,7 @@
 {
   "name": "koa-usercenter-system",
   "version": "1.0.0",
-  "description": "This is a usercenter system which use koa2.",
+  "description": " This is a web spider system which use koa.js, mysql, js, html, css, angular7 to code it.",
   "main": "app/app.js",
   "directories": {
     "test": "test"
